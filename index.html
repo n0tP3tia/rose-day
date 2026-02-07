@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Rose Day 🌹</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#ff5f8f,#ff99ac);
+    text-align:center;
+    color:white;
+}
+
+h1{
+    margin-top:120px;
+    font-size:50px;
+    text-shadow:2px 2px 10px black;
+}
+
+.btn{
+    padding:15px 35px;
+    font-size:22px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    margin:20px;
+    position:absolute;
+}
+
+#yes{ background:#28a745; left:45%; top:60%; }
+#no{ background:#dc3545; left:55%; top:60%; }
+
+/* popup */
+#popup{
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    color:#ff4081;
+    padding:30px 40px;
+    border-radius:20px;
+    font-size:30px;
+    box-shadow:0 0 30px rgba(0,0,0,0.4);
+    z-index:999;
+}
+
+/* roses */
+.rose{
+    position:fixed;
+    top:-50px;
+    font-size:30px;
+    animation: fall linear infinite;
+}
+@keyframes fall{
+    to{ transform:translateY(110vh) rotate(360deg); }
+}
+
+/* confetti */
+.confetti{
+    position:fixed;
+    width:10px; height:10px;
+    background:yellow;
+    top:-10px;
+    animation: fall linear forwards;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will you accept my Rose? 🌹❤️</h1>
+
+<button id="yes" class="btn" onclick="yesClick()">YES 💖</button>
+<button id="no" class="btn" onmouseover="moveNo()">NO 😜</button>
+
+<div id="popup">Yayyyyy 💘 Happy Rose Day 🌹</div>
+
+<audio id="music" loop>
+<source src="https://soundcloud.com/inder-kirat/sets/love-songs-1?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing">
+</audio>
+
+<script>
+function yesClick(){
+    document.getElementById("music").play();
+    document.getElementById("popup").style.display="block";
+    startConfetti();
+}
+
+function moveNo(){
+    let btn=document.getElementById("no");
+    let x=Math.random()*(window.innerWidth-150);
+    let y=Math.random()*(window.innerHeight-150);
+    btn.style.left=x+"px";
+    btn.style.top=y+"px";
+}
+
+/* falling roses */
+function createRose(){
+    const rose=document.createElement("div");
+    rose.classList.add("rose");
+    rose.innerHTML="🌹";
+    rose.style.left=Math.random()*100+"vw";
+    rose.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(rose);
+    setTimeout(()=>rose.remove(),6000);
+}
+setInterval(createRose,300);
+
+/* 🎉 confetti explosion */
+function startConfetti(){
+    for(let i=0;i<150;i++){
+        const c=document.createElement("div");
+        c.classList.add("confetti");
+        c.style.left=Math.random()*100+"vw";
+        c.style.backgroundColor=
+          "hsl("+Math.random()*360+",100%,50%)";
+        c.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),5000);
+    }
+}
+</script>
+
+</body>
+</html>
