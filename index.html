@@ -79,12 +79,14 @@ h1{
 <div id="popup">Yayyyyy 💘 Happy Rose Day 🌹</div>
 
 <audio id="music" loop>
-<source src="https://soundcloud.com/inder-kirat/sets/love-songs-1?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9bce09.mp3?filename=romantic-love-112199.mp3">
 </audio>
 
 <script>
 function yesClick(){
-    document.getElementById("music").play();
+    const music = document.getElementById("music");
+    music.src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9bce09.mp3?filename=romantic-love-112199.mp3";
+    music.play();
     document.getElementById("popup").style.display="block";
     startConfetti();
 }
